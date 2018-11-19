@@ -8,9 +8,36 @@
             <v-list-tile-content>
                 <v-list-tile-title @dblclick="editHandler">{{ todo.content }}</v-list-tile-title>
             </v-list-tile-content>
-            <v-list-tile-action>
+            <!--<v-list-tile-action>
                 <v-btn color="error" @click="deleteHandler">刪除</v-btn>
-            </v-list-tile-action>
+            </v-list-tile-action>-->
+
+
+            <!--<v-divider :inset="true"></v-divider>-->
+            <v-dialog v-model="dialog" width="500">
+                <v-btn slot="activator" color="error" dark>
+                    刪除
+                </v-btn>
+
+                <v-card>
+                    <v-card-title class="headline grey lighten-2" primary-title>
+                        刪除待辦事項
+                    </v-card-title>
+
+                    <v-card-text>
+                        確定要刪除嗎 {{ todo.content }} ？
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary" flat @click="deleteHandler">
+                            確定
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </v-list-tile>
     </v-list>
 </div>

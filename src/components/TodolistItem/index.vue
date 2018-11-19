@@ -1,9 +1,10 @@
 <script>
 export default {
-  name: "vuetify3",
+  name: "vuetify",
   data() {
     return {
-      edit: null
+      edit: null,
+      dialog: false
     };
   },
   props: {
@@ -33,8 +34,9 @@ export default {
   },
   methods: {
     deleteHandler() {
-      if (confirm(`確定要刪除嗎 ${this.todo.content} ?`))
-        this.$store.commit("DELETE_TODOS", this.index);
+      //if (confirm(`確定要刪除嗎 ${this.todo.content} ?`))
+      this.$store.commit("DELETE_TODOS", this.index);
+      this.dialog = false;
     },
     editHandler() {
       this.edit = this.todo.content;
