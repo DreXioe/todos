@@ -2,7 +2,10 @@
   <div id="app">
     <v-app>
       <v-navigation-drawer app></v-navigation-drawer>
-      <v-toolbar app></v-toolbar>
+      <v-toolbar color="teal" dark app>
+        <v-toolbar-side-icon></v-toolbar-side-icon>
+        <v-toolbar-title class="text-xs-center">TodoList</v-toolbar-title>
+      </v-toolbar>
       <v-content>
        <v-container fluid>
           <v-tabs fixed-tabs>
@@ -19,7 +22,27 @@
           </div>
         </v-container>
       </v-content>
-      <v-footer app></v-footer>
+<v-footer
+    dark
+    height="auto"
+  >
+    <v-card
+      class="flex"
+      flat
+      tile
+    >
+      <v-card-title class="teal">
+        <v-spacer></v-spacer>
+        <strong class="subheading">Footer</strong>
+
+        <v-spacer></v-spacer>
+      </v-card-title>
+
+      <v-card-actions class="grey darken-3 justify-center">
+        &copy;2018 — <strong>FJ</strong>
+      </v-card-actions>
+    </v-card>
+  </v-footer>
     </v-app>
   </div>
 </template>
@@ -36,6 +59,13 @@ export default {
         { text: "全部", link: "/all" },
         { text: "未完成", link: "/undo" },
         { text: "已完成", link: "/complete" }
+      ],
+      icons: [
+        "fab fa-facebook",
+        "fab fa-twitter",
+        "fab fa-google-plus",
+        "fab fa-linkedin",
+        "fab fa-instagram"
       ]
     };
   },
