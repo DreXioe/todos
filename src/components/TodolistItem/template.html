@@ -1,7 +1,9 @@
 <div>
     <v-list v-if="edit != null">
-        <!----<input type="text" v-model.trim="edit" @keyup.enter="submitHandler" @keyup.esc="cancelHanlder" @blur="cancelHanlder">-->
-        <v-text-field autofocus v-model.trim="edit" @keyup.enter='submitHandler' @keyup.esc="cancelHanlder" @blur="cancelHanlder"></v-text-field>
+        <v-list-tile>
+            <!----<input type="text" v-model.trim="edit" @keyup.enter="submitHandler" @keyup.esc="cancelHanlder" @blur="cancelHanlder">-->
+            <v-text-field append-icon='save' autofocus v-model.trim='edit' @keyup.enter='submitHandler' @keyup.esc='cancelHanlder' @click:append='submitHandler' @blur="cancelHanlder"></v-text-field>
+        </v-list-tile>
     </v-list>
     <v-list v-else>
         <v-list-tile>
@@ -12,7 +14,7 @@
                 <v-list-tile-title :class="done && 'grey--text' || 'text--primary'" @dblclick="editHandler">{{ todo.content }}</v-list-tile-title>
             </v-list-tile-content>
 
-            <v-scroll-x-transition>
+            <v-scroll-x-transition hide-on-leave>
                 <v-icon v-if="done" color="success">
                     check
                 </v-icon>
