@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "vuetify",
+  name: "vuetify3",
   data() {
     return {
       edit: null,
@@ -39,6 +39,7 @@ export default {
       this.dialog = false;
     },
     editHandler() {
+      if (this.done) return;
       this.edit = this.todo.content;
     },
     submitHandler() {

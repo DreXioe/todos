@@ -49,6 +49,12 @@ export default new Vuex.Store({
     getters: {
         todoIndex(state) {
             return filter[state.route.name](state.todos).map(todo => state.todos.indexOf(todo))
+        },
+        todoAll(state) {
+            return filter['all'](state.todos).length
+        },
+        todoDone(state) {
+            return filter['complete'](state.todos).length
         }
     },
     mutations: {

@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "vuetify",
+  name: "vuetify2",
   data() {
     return {
       todo: ""

@@ -1,13 +1,25 @@
 <div>
-    <input type="text" v-model.trim="edit" v-if="edit != null" v-focus @keyup.enter="submitHandler" @keyup.esc="cancelHanlder" @blur="cancelHanlder">
+    <v-list v-if="edit != null">
+        <!----<input type="text" v-model.trim="edit" @keyup.enter="submitHandler" @keyup.esc="cancelHanlder" @blur="cancelHanlder">-->
+        <v-text-field autofocus v-model.trim="edit" @keyup.enter='submitHandler' @keyup.esc="cancelHanlder" @blur="cancelHanlder"></v-text-field>
+    </v-list>
     <v-list v-else>
         <v-list-tile>
             <v-list-tile-action>
                 <v-checkbox v-model="done" hide-details></v-checkbox>
             </v-list-tile-action>
             <v-list-tile-content>
-                <v-list-tile-title @dblclick="editHandler">{{ todo.content }}</v-list-tile-title>
+                <v-list-tile-title :class="done && 'grey--text' || 'text--primary'" @dblclick="editHandler">{{ todo.content }}</v-list-tile-title>
             </v-list-tile-content>
+
+            <v-scroll-x-transition>
+                <v-icon v-if="done" color="success">
+                    check
+                </v-icon>
+                <v-icon v-else color="teal" @click="editHandler">
+                    edit
+                </v-icon>
+            </v-scroll-x-transition>
             <!--<v-list-tile-action>
                 <v-btn color="error" @click="deleteHandler">刪除</v-btn>
             </v-list-tile-action>-->
@@ -15,7 +27,7 @@
 
             <!--<v-divider :inset="true"></v-divider>-->
             <v-dialog v-model="dialog" width="500">
-                <v-btn slot="activator" color="error" dark>
+                <v-btn slot="activator" color="error">
                     刪除
                 </v-btn>
 

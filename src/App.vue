@@ -6,42 +6,36 @@
         <v-toolbar-title class="text-xs-center">TodoList</v-toolbar-title>
       </v-toolbar>
       <v-content>
-       <v-container fluid>
+        <v-container fluid>
           <v-tabs fixed-tabs>
-            <v-tab 
-              v-for="(n,index) in todoTabs"
-              :key="index" :to="n.link"
-            >
-              {{ n.text }}
+            <v-tab v-for="(n, index) in todoTabs" :key="index" :to="n.link">
+              {{ n.text }} ({{ n.count }})
             </v-tab>
           </v-tabs>
-          <Todoinput/>
+          <Todoinput />
           <div>
-            <TodolistItem v-for="index in todoIndex" :key="index" :index="index"/>
+            <TodolistItem
+              v-for="index in todoIndex"
+              :key="index"
+              :index="index"
+            />
           </div>
         </v-container>
       </v-content>
-<v-footer
-    dark
-    height="auto"
-  >
-    <v-card
-      class="flex"
-      flat
-      tile
-    >
-      <v-card-title class="teal">
-        <v-spacer></v-spacer>
-        <strong class="subheading">Footer</strong>
+      <v-footer dark height="auto">
+        <v-card class="flex" flat tile>
+          <v-card-title class="teal">
+            <v-spacer></v-spacer>
+            <strong class="subheading">Footer</strong>
 
-        <v-spacer></v-spacer>
-      </v-card-title>
+            <v-spacer></v-spacer>
+          </v-card-title>
 
-      <v-card-actions class="grey darken-3 justify-center">
-        &copy;2018 — <strong>FJ</strong>
-      </v-card-actions>
-    </v-card>
-  </v-footer>
+          <v-card-actions class="grey darken-3 justify-center">
+            &copy;2018 — <strong>FJ</strong>
+          </v-card-actions>
+        </v-card>
+      </v-footer>
     </v-app>
   </div>
 </template>
@@ -52,22 +46,6 @@ import TodolistItem from "@/components/TodolistItem/index.vue";
 
 export default {
   name: "vuetify",
-  data() {
-    return {
-      todoTabs: [
-        { text: "全部", link: "/all" },
-        { text: "未完成", link: "/undo" },
-        { text: "已完成", link: "/complete" }
-      ],
-      icons: [
-        "fab fa-facebook",
-        "fab fa-twitter",
-        "fab fa-google-plus",
-        "fab fa-linkedin",
-        "fab fa-instagram"
-      ]
-    };
-  },
   components: {
     Todoinput,
     TodolistItem
@@ -75,6 +53,26 @@ export default {
   computed: {
     todoIndex() {
       return this.$store.getters["todoIndex"];
+    },
+    todoAll() {
+      return this.$store.getters["todoAll"];
+    },
+    todoDone() {
+      return this.$store.getters["todoDone"];
+    },
+    todoUndo() {
+      return this.todoAll - this.todoDone;
+    },
+    todoTabs() {
+      return [
+        { text: "全部", link: "/all", count: this.todoAll },
+        { text: "未完成", link: "/undo", count: this.todoUndo },
+        {
+          text: "已完成",
+          link: "/complete",
+          count: this.todoDone
+        }
+      ];
     }
   },
   mounted() {
@@ -82,4 +80,3 @@ export default {
   }
 };
 </script>
-
