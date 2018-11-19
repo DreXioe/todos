@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <v-app>
-      <v-navigation-drawer app></v-navigation-drawer>
       <v-toolbar color="teal" dark app>
         <v-toolbar-side-icon></v-toolbar-side-icon>
         <v-toolbar-title class="text-xs-center">TodoList</v-toolbar-title>
