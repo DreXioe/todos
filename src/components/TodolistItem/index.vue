@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "vuetify3",
+  name: "vuetify4",
   data() {
     return {
       edit: null,
