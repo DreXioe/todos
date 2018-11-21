@@ -26,10 +26,24 @@ export default {
           index: this.index,
           data: {
             content: this.todo.content,
-            done: val
+            done: val,
+            time: this.todo.time
           }
         });
       }
+    },
+    time() {
+      var event = new Date(this.todo.time);
+      var options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
+      };
+      return event.toLocaleDateString("zh-TW", options);
     }
   },
   methods: {
@@ -51,7 +65,8 @@ export default {
         index: this.index,
         data: {
           content: this.edit,
-          done: this.todo.done
+          done: this.todo.done,
+          time: this.todo.time
         }
       });
       this.edit = null;

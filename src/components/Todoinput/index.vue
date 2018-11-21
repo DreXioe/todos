@@ -11,7 +11,8 @@ export default {
       if (!this.todo) return;
       this.$store.commit("ADD_TODOS", {
         content: this.todo,
-        done: false
+        done: false,
+        time: Date.now()
       });
       this.todo = null;
     }

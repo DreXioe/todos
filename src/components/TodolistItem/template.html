@@ -5,13 +5,14 @@
             <v-text-field append-icon='save' autofocus v-model.trim='edit' @keyup.enter='submitHandler' @keyup.esc='cancelHanlder' @click:append='submitHandler' @blur="cancelHanlder"></v-text-field>
         </v-list-tile>
     </v-list>
-    <v-list v-else>
+    <v-list two-line v-else>
         <v-list-tile>
             <v-list-tile-action>
                 <v-checkbox v-model="done" hide-details></v-checkbox>
             </v-list-tile-action>
             <v-list-tile-content>
                 <v-list-tile-title :class="done && 'grey--text' || 'text--primary'" @dblclick="editHandler">{{ todo.content }}</v-list-tile-title>
+                <v-list-tile-sub-title v-html="time"></v-list-tile-sub-title>
             </v-list-tile-content>
 
             <v-scroll-x-transition hide-on-leave>
