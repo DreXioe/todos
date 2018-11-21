@@ -1,7 +1,6 @@
 <div>
     <v-list v-if="edit != null">
         <v-list-tile>
-            <!----<input type="text" v-model.trim="edit" @keyup.enter="submitHandler" @keyup.esc="cancelHanlder" @blur="cancelHanlder">-->
             <v-text-field append-icon='save' autofocus v-model.trim='edit' @keyup.enter='submitHandler' @keyup.esc='cancelHanlder' @click:append='submitHandler' @blur="cancelHanlder"></v-text-field>
         </v-list-tile>
     </v-list>
@@ -23,12 +22,6 @@
                     edit
                 </v-icon>
             </v-scroll-x-transition>
-            <!--<v-list-tile-action>
-                <v-btn color="error" @click="deleteHandler">刪除</v-btn>
-            </v-list-tile-action>-->
-
-
-            <!--<v-divider :inset="true"></v-divider>-->
             <v-dialog v-model="dialog" width="500">
                 <v-btn slot="activator" color="error">
                     刪除
