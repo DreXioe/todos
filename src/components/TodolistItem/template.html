@@ -1,22 +1,30 @@
 <div>
     <v-list v-if="edit != null">
         <v-list-tile>
+<<<<<<< HEAD
             <!--
         --<input type="text" v-model.trim="edit" @keyup.enter="submitHandler" @keyup.esc="cancelHanlder" @blur="cancelHanlder">
       -->
             <v-text-field append-icon="save" autofocus v-model.trim="edit" @keyup.enter="submitHandler" @keyup.esc="cancelHanlder"
                 append-outer-icon="calendar_today" @click:append-outer="showCalendar" @click:append="submitHandler"
                 @blur="cancelHanlder"></v-text-field>
+=======
+            <v-text-field append-icon='save' autofocus v-model.trim='edit' @keyup.enter='submitHandler' @keyup.esc='cancelHanlder' @click:append='submitHandler' @blur="cancelHanlder"></v-text-field>
+>>>>>>> 8dae9083b99c82c9654aff57576fdb38d03f2be5
         </v-list-tile>
     </v-list>
-    <v-list v-else>
+    <v-list two-line v-else>
         <v-list-tile>
             <v-list-tile-action>
                 <v-checkbox v-model="done" hide-details></v-checkbox>
             </v-list-tile-action>
             <v-list-tile-content>
                 <v-list-tile-title :class="done && 'grey--text' || 'text--primary'" @dblclick="editHandler">{{ todo.content }}</v-list-tile-title>
+<<<<<<< HEAD
                 <v-list-tile-sub-title>{{ selectedDate }}</v-list-tile-sub-title>
+=======
+                <v-list-tile-sub-title v-html="time"></v-list-tile-sub-title>
+>>>>>>> 8dae9083b99c82c9654aff57576fdb38d03f2be5
             </v-list-tile-content>
 
             <v-scroll-x-transition hide-on-leave>
@@ -27,6 +35,7 @@
                     <v-icon color="teal" @click="showDialog"> delete_outline </v-icon>
                 </div>
             </v-scroll-x-transition>
+<<<<<<< HEAD
             <!--
         <v-list-tile-action>
             <v-btn color="error" @click="deleteHandler">刪除</v-btn>
@@ -36,6 +45,12 @@
             <!-- <v-divider :inset="true"></v-divider> -->
             <v-dialog :value="dialog" width="500">
 
+=======
+            <v-dialog v-model="dialog" width="500">
+                <v-btn slot="activator" color="error">
+                    刪除
+                </v-btn>
+>>>>>>> 8dae9083b99c82c9654aff57576fdb38d03f2be5
 
                 <v-card>
                     <v-card-title class="headline grey lighten-2" primary-title>

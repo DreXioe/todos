@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .DS_Store
 Thumbs.db
@@ -16,3 +17,8 @@ dist/
 *.njsproj
 *.sln
 .vscode/
+=======
+node_modules
+dist
+src/components/HelloWorld.vue
+>>>>>>> 8dae9083b99c82c9654aff57576fdb38d03f2be5

@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     submitHanlder() {
+<<<<<<< HEAD
       if (!this.newTodo.content) return;
       var self = this;
       axios
@@ -63,6 +64,15 @@ export default {
         uuid: "00000000-0000-0000-0000-000000000000"
       };
       this.$store.commit("RESET_CALENDAR_TODO");
+=======
+      if (!this.todo) return;
+      this.$store.commit("ADD_TODOS", {
+        content: this.todo,
+        done: false,
+        time: Date.now()
+      });
+      this.todo = null;
+>>>>>>> 8dae9083b99c82c9654aff57576fdb38d03f2be5
     }
   }
 };
