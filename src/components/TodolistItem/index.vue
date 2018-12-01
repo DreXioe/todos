@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "vuetify4",
+  name: "TodolistItem",
   data() {
     return {
       edit: null,
@@ -30,6 +30,13 @@ export default {
           }
         });
       }
+    },
+    selectedDate() {
+      if (this.todo.dueDate) {
+        return "到期日:" + this.todo.dueDate;
+      } else {
+        return "無期限";
+      }
     }
   },
   methods: {
@@ -58,10 +65,14 @@ export default {
     },
     cancelHanlder() {
       this.edit = null;
+    },
+    showCalendar() {
+      this.$store.commit("SHOW_CALENDAR", this.todo);
+    },
+    showDialog() {
+      this.dialog = true;
     }
   }
 };
 </script>
-<template src="./template.html">
-    
-</template>
+<template src="./template.html"></template>

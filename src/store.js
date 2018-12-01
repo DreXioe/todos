@@ -44,7 +44,9 @@ export default new Vuex.Store({
                 content: '整合後台',
                 done: false
             }
-        ]
+        ],
+        displayCalendar: false,
+        calendarTodo: ''
     },
     getters: {
         todoIndex(state) {
@@ -79,6 +81,19 @@ export default new Vuex.Store({
         DELETE_TODOS(state, index) {
             state.todos.splice(index, 1)
             LS.save(state.todos)
+        },
+        SHOW_CALENDAR(state, payload) {
+            state.displayCalendar = true
+            state.calendarTodo = payload
+        },
+        HIDE_CALENDAR(state) {
+            state.displayCalendar = false
+        },
+        SET_CALENDAR_DATE(state,date){
+            state.calendarTodo.dueDate = date
+        },
+        RESET_CALENDAR_TODO(state){
+            state.calendarTodo = null
         }
     },
     actions: {
