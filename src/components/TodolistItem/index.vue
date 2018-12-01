@@ -32,27 +32,12 @@ export default {
         });
       }
     },
-<<<<<<< HEAD
     selectedDate() {
       if (this.todo.dueDate) {
         return "到期日:" + this.todo.dueDate;
       } else {
         return "無期限";
       }
-=======
-    time() {
-      var event = new Date(this.todo.time);
-      var options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric"
-      };
-      return event.toLocaleDateString("zh-TW", options);
->>>>>>> 8dae9083b99c82c9654aff57576fdb38d03f2be5
     }
   },
   methods: {
