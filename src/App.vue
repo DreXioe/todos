@@ -8,19 +8,29 @@
       <v-content>
         <v-container fluid>
           <v-tabs fixed-tabs>
-            <v-tab v-for="(n, index) in todoTabs" :key="index" :to="n.link">
-              {{ n.text }} ({{ n.count }})
-            </v-tab>
-          </v-tabs>
-          <Todoinput />
-          <div>
-            <TodolistItem
-              v-for="index in todoIndex"
+            <v-tab
+              v-for="(n, index) in todoTabs"
               :key="index"
-              :index="index"
-            />
+              :to="n.link"
+            >{{ n.text }} ({{ n.count }})</v-tab>
+          </v-tabs>
+          <Todoinput/>
+          <div>
+            <TodolistItem v-for="index in todoIndex" :key="index" :index="index"/>
           </div>
         </v-container>
+        <v-bottom-sheet :value="displayCalendar" persistent>
+          <v-date-picker
+            color="teal"
+            full-width
+            show-current
+            no-title
+            v-model="calendarDate"
+            @input="$store.commit('HIDE_CALENDAR')"
+          ></v-date-picker>
+          <v-btn @click="$store.commit('HIDE_CALENDAR')">取消</v-btn>
+          <v-btn @click="removeDate">無期限</v-btn>
+        </v-bottom-sheet>
       </v-content>
       <v-footer dark height="auto">
         <v-card class="flex" flat tile>
@@ -32,7 +42,8 @@
           </v-card-title>
 
           <v-card-actions class="grey darken-3 justify-center">
-            &copy;2018 — <strong>FJ</strong>
+            &copy;2018 —
+            <strong>FJ</strong>
           </v-card-actions>
         </v-card>
       </v-footer>
@@ -43,6 +54,7 @@
 <script>
 import Todoinput from "@/components/Todoinput/index.vue";
 import TodolistItem from "@/components/TodolistItem/index.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "vuetify",
@@ -51,6 +63,7 @@ export default {
     TodolistItem
   },
   computed: {
+    ...mapState(["displayCalendar"]),
     todoIndex() {
       return this.$store.getters["todoIndex"];
     },
@@ -73,6 +86,24 @@ export default {
           count: this.todoDone
         }
       ];
+    },
+    calendarDate: {
+      get() {
+        if (this.$store.state.calendarTodo) {
+          return this.$store.state.calendarTodo.dueDate;
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.$store.commit("SET_CALENDAR_DATE", value);
+      }
+    }
+  },
+  methods: {
+    removeDate() {
+      this.calendarDate = "";
+      this.$store.commit("HIDE_CALENDAR");
     }
   },
   mounted() {

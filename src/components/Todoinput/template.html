@@ -1,9 +1,15 @@
 <v-layout>
-    <v-text-field autofocus v-model="todo" :counter="40" label="請輸入待辦事項" @keyup.enter='submitHanlder' required>
-        <v-fade-transition slot="append">
-            <v-icon v-if="todo" @click="submitHanlder">
-                add_circle
-            </v-icon>
-        </v-fade-transition>
+    <v-text-field 
+        autofocus 
+        v-model="newTodo.content"
+        :counter="40" 
+        label="請輸入待辦事項" 
+        @keyup.enter='submitHanlder' 
+        :append-icon="newTodo.content?'add_circle':''" 
+        @click:append="submitHanlder" 
+        :append-outer-icon="newTodo.content?'calendar_today':''" 
+        @click:append-outer="showCalendar"
+        :messages="selectedDate"
+        required>
     </v-text-field>
 </v-layout>
